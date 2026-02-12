@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты — Vayatel</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">Vaya<span>tel</span></div>
+        <nav class="nav">
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link">Главная</a></li>
+                <li><a href="about.html" class="nav-link">О нас</a></li>
+                <li><a href="services.html" class="nav-link">Услуги</a></li>
+                <li><a href="team.html" class="nav-link">Команда</a></li>
+                <li><a href="contacts.html" class="nav-link active">Контакты</a></li>
+                <li><a href="docs.html" class="nav-link">Документы</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle">☰</div>
+    </header>
+
+    <main>
+        <section style="padding-top: 150px;" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-suptitle">Touch me by Vayatel</div>
+                    <h1 class="section-title">Контакты</h1>
+                </div>
+            </div>
+        </section>
+
+        <!-- ДВЕ КАРТЫ / ДВА АДРЕСА - С ФОТО ФИЛИАЛОВ -->
+        <section class="map-section">
+            <div class="container">
+                <div class="map-grid">
+                    <!-- Студия на Свердлова -->
+                    <div class="map-item">
+                        <h2 class="map-title">Студия на Свердлова</h2>
+                        <p class="map-address">📍 г. Уфа, ул. Свердлова, 72/2</p>
+                        <p class="map-phone">📞 +7 (995) 943-59-97</p>
+                        <p style="margin-bottom: 15px;"><strong>Touch me by Vayatel</strong></p>
+                        
+                        <!-- ======================================= -->
+                        <!-- ФОТО: Филиал на Свердлова              -->
+                        <!-- Файл: images/studio-sverdlova.jpg      -->
+                        <!-- Что снимать: вход, вывеска, интерьер   -->
+                        <!-- ======================================= -->
+                        <div style="height: 250px; margin-top: 20px; overflow: hidden;">
+                            <img src="images/ad1.png" alt="Студия на Свердлова" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                    </div>
+                    
+                    <!-- Студия на Менделеева -->
+                    <div class="map-item">
+                        <h2 class="map-title">Студия на Менделеева</h2>
+                        <p class="map-address">📍 г. Уфа, ул. Менделеева, 134/7 этаж 1</p>
+                        <p class="map-phone">📞 +7 (927) 308-08-76</p>
+                        <p style="margin-bottom: 15px;"><strong>1 кабинет; 1 этаж; вход А</strong></p>
+                        
+                        <!-- ======================================= -->
+                        <!-- ФОТО: Филиал на Менделеева             -->
+                        <!-- Файл: images/studio-mendeleeva.jpg     -->
+                        <!-- ======================================= -->
+                        <div style="height: 250px; margin-top: 20px; overflow: hidden;">
+                            <img src="images/ad2.png" alt="Студия на Менделеева" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- КОНТАКТНЫЕ ФОРМЫ -->
+        <section class="section contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Найти нас очень просто</h2>
+                </div>
+                <div class="contact-grid">
+                    <div>
+                        <h3 style="font-size: 1.5rem; color: var(--color-earth); margin-bottom: 30px;">Свердлова, 72/2</h3>
+                        <form class="contact-form" onsubmit="handleFormSubmit(event)">
+                            <div class="form-group">
+                                <input type="tel" class="form-input" placeholder="+7 (995) 943-59-97" value="+7 (995) 943-59-97" disabled style="color: var(--color-earth);">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-input" placeholder="Ваше имя" required>
+                            </div>
+                            <button type="submit" class="btn">Оставить заявку</button>
+                            <p class="form-policy">Отправляя заявку, вы соглашаетесь с Политикой конфиденциальности</p>
+                        </form>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1.5rem; color: var(--color-earth); margin-bottom: 30px;">Менделеева, 134/7</h3>
+                        <form class="contact-form" onsubmit="handleFormSubmit(event)">
+                            <div class="form-group">
+                                <input type="tel" class="form-input" placeholder="+7 (927) 308-08-76" value="+7 (927) 308-08-76" disabled style="color: var(--color-earth);">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-input" placeholder="Ваше имя" required>
+                            </div>
+                            <button type="submit" class="btn">Оставить заявку</button>
+                            <p class="form-policy">Отправляя заявку, вы соглашаетесь с Политикой конфиденциальности</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- РЕКВИЗИТЫ -->
+        <section class="section" style="background: var(--color-sand);">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Реквизиты</h2>
+                </div>
+                <div style="max-width: 700px; margin: 0 auto; background: var(--color-white); padding: 60px;">
+                    <p style="font-size: 1.3rem; margin-bottom: 30px; color: var(--color-earth);"><strong>ООО «Ваятель»</strong></p>
+                    <p style="margin-bottom: 10px;">ИНН 0274987654</p>
+                    <p style="margin-bottom: 10px;">КПП 027401001</p>
+                    <p style="margin-bottom: 10px;">ОГРН 1150280012345</p>
+                    <p style="margin-bottom: 10px;">р/с 40702810701234567890</p>
+                    <p style="margin-bottom: 10px;">в ПАО «УралСиб», г. Уфа</p>
+                    <p style="margin-bottom: 10px;">к/с 30101810600000000789</p>
+                    <p style="margin-bottom: 30px;">БИК 048073789</p>
+                    <a href="#" class="btn btn--small">Скачать реквизиты</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">Vaya<span>tel</span></div>
+                    <p class="footer-about">Студия массажного искусства в Уфе.</p>
+                </div>
+                <div class="footer-nav">
+                    <h4 class="footer-title">Меню</h4>
+                    <a href="index.html">Главная</a>
+                    <a href="about.html">О нас</a>
+                    <a href="services.html">Услуги</a>
+                    <a href="team.html">Команда</a>
+                    <a href="contacts.html">Контакты</a>
+                </div>
+                <div class="footer-nav">
+                    <h4 class="footer-title">Документы</h4>
+                    <a href="docs.html">Политика конфиденциальности</a>
+                    <a href="docs.html">Договор Оферты</a>
+                </div>
+                <div>
+                    <h4 class="footer-title">Получайте предложения</h4>
+                    <div class="footer-subscribe">
+                        <input type="email" placeholder="Your Email">
+                        <button>→</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Vayatel, 2025</p>
+            </div>
+            <div class="footer-warning">
+                * Instagram признан экстремистской организацией. Деятельность Meta Platforms Inc. запрещена на территории РФ.
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

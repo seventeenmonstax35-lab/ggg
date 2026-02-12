@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>Vayatel — Студия массажа и СПА в Уфе</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Дополнительные стили для улучшенной формы */
+        .master-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 20px 0 30px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .master-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                max-height: 350px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .master-grid {
+                grid-template-columns: 1fr 1fr;
+                max-height: 450px;
+            }
+        }
+        
+        .master-option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid rgba(199, 181, 168, 0.3);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--color-white);
+        }
+        
+        .master-option:hover {
+            border-color: var(--color-clay);
+            background: rgba(199, 181, 168, 0.05);
+            transform: translateY(-2px);
+        }
+        
+        .master-option.selected {
+            border-color: var(--color-earth);
+            background: rgba(107, 91, 78, 0.05);
+            box-shadow: 0 5px 15px rgba(107, 91, 78, 0.1);
+        }
+        
+        .master-radio {
+            margin-right: 12px;
+            accent-color: var(--color-earth);
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .master-info {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        
+        .master-name {
+            font-weight: 600;
+            color: var(--color-earth);
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+        
+        .master-specialty {
+            font-size: 0.75rem;
+            color: var(--color-stone);
+            letter-spacing: 0.5px;
+            line-height: 1.4;
+        }
+        
+        .master-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            background: var(--color-clay);
+            color: var(--color-white);
+            font-size: 0.65rem;
+            border-radius: 20px;
+            margin-top: 5px;
+            align-self: flex-start;
+        }
+        
+        .service-price {
+            font-family: var(--font-serif);
+            color: var(--color-earth);
+            font-size: 1.1rem;
+            margin-left: 10px;
+        }
+        
+        .price-detail {
+            background: var(--color-cream);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .selected-service {
+            font-size: 1.1rem;
+            color: var(--color-charcoal);
+        }
+        
+        .selected-master {
+            font-size: 1rem;
+            color: var(--color-stone);
+            font-style: italic;
+        }
+        
+        .total-price {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--color-earth);
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">Vaya<span>tel</span></div>
+        <nav class="nav">
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link active">Главная</a></li>
+                <li><a href="about.html" class="nav-link">О нас</a></li>
+                <li><a href="services.html" class="nav-link">Услуги</a></li>
+                <li><a href="team.html" class="nav-link">Команда</a></li>
+                <li><a href="contacts.html" class="nav-link">Контакты</a></li>
+                <li><a href="docs.html" class="nav-link">Документы</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle">☰</div>
+    </header>
+
+    <main>
+   <!-- HERO С ФОНОВЫМ ИЗОБРАЖЕНИЕМ - ФОТО ВИДНО, ТЕКСТ ЧЕТКИЙ -->
+<section class="hero" style="background: linear-gradient(145deg, 
+    rgba(252,248,244,0.65) 0%, 
+    rgba(240,231,222,0.55) 100%), 
+    url('images/1.png'); 
+    background-size: cover; 
+    background-position: center;">
+    
+    <div class="hero-content">
+        <!-- Текст с индивидуальными тенями -->
+        <div class="hero-suptitle" style="
+            color: #3a3532; 
+            font-weight: 500; 
+            text-shadow: 0 2px 8px rgba(255,255,255,0.7);
+            letter-spacing: 8px;">
+            Студия массажа и СПА
+        </div>
+        
+        <h1 class="hero-title" style="
+            color: #2c2825; 
+            font-weight: 500; 
+            text-shadow: 
+                0 2px 12px rgba(255,255,255,0.9),
+                0 4px 20px rgba(255,255,255,0.5);
+            letter-spacing: 0.02em;">
+            прикоснись <i style="
+                color: #5a4c42; 
+                font-style: italic;
+                text-shadow: 0 2px 12px rgba(255,255,255,0.9);">
+                ко мне,</i><br>олицетворение доверия
+        </h1>
+        
+        <!-- Полупрозрачная подложка только под текст, не перекрывает фото -->
+        <p class="hero-desc" style="
+            color: #2c2825; 
+            font-weight: 500; 
+            background: rgba(255,255,255,0.3); 
+            backdrop-filter: blur(2px);
+            padding: 12px 30px; 
+            border-radius: 40px; 
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-shadow: 0 1px 5px rgba(255,255,255,0.5);">
+            Студия массажа и СПА в Уфе для здоровья души и тела.
+        </p>
+        
+        <!-- Кнопка с тенью для читаемости -->
+        <a href="#booking" class="btn" style="
+            background: #6b5b4e; 
+            color: white; 
+            border-color: #6b5b4e; 
+            font-weight: 500; 
+            margin-top: 25px;
+            box-shadow: 0 4px 20px rgba(107,91,78,0.25);
+            border: none;">
+            Записаться на массаж
+        </a>
+    </div>
+    
+    <div class="hero-scroll" style="
+        color: #3a3532; 
+        font-weight: 500;
+        text-shadow: 0 1px 8px rgba(255,255,255,0.7);">
+        
+    </div>
+</section>
+
+        <!-- АДРЕСА -->
+        <div class="addresses">
+            <div class="container">
+                <div class="addresses-grid">
+                    <div class="address-item">
+                        <div class="address-icon">📍</div>
+                        <div class="address-text">
+                            г. Уфа, ул. Свердлова, 72/2
+                            <small>Touch me by Vayatel</small>
+                        </div>
+                    </div>
+                    <div class="address-item">
+                        <div class="address-icon">📍</div>
+                        <div class="address-text">
+                            г. Уфа, ул. Менделеева, 134/7 этаж 1
+                            <small>1 кабинет; вход А</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- О СТУДИИ -->
+        <section class="section studio">
+            <div class="container">
+                <div class="studio-grid">
+                    <div class="studio-content">
+                        <div class="section-suptitle">Vayatel</div>
+                        <h2 class="section-title section-title--left">прикоснись ко мне,<br>олицетворение доверия</h2>
+                        <div class="studio-quote">тепла и заботы.</div>
+                        <p class="studio-text">Смысл нашей работы — делать людей физически и ментально лучше, чем они к нам пришли. Освобождать их разум и тело от оков беспокойства, боли и тягот жизни, мотивируя заботиться о собственном теле.</p>
+                        <div class="studio-mission">
+                            Наша миссия — выявить корень проблемы мягким безболезненным путем, снять эмоциональное напряжение и нормализовать тонус в каждой мышце Вашего тела.
+                        </div>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <div class="stat-number">5,0</div>
+                                <div class="stat-label">Рейтинг в Яндексе</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">★ 5</div>
+                                <div class="stat-label">2ГИС</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">8+</div>
+                                <div class="stat-label">лет опыта</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="studio-image">
+                        <img src="images/4.png" alt="Интерьер студии Vayatel" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- КЛЮЧЕВЫЕ УСЛУГИ С АДАПТИВНОЙ СЕТКОЙ -->
+        <section class="section" style="background: var(--color-white);">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-suptitle">Наши программы</div>
+                    <h2 class="section-title">Ключевые направления</h2>
+                </div>
+                <div class="services-grid">
+                    <!-- Карточка 1 -->
+                    <div class="service-card service-card--with-image">
+                        <div class="service-image">
+                            <img src="images/class.png" alt="Классический массаж" loading="lazy">
+                        </div>
+                        <div class="service-number">01</div>
+                        <h3 class="service-title">Классика</h3>
+                        <p class="service-desc">Снимает мышечные зажимы, улучшает кровообращение и общее состояние организма.</p>
+                        <a href="#booking" class="service-link">Записаться от 3 500 ₽</a>
+                    </div>
+                    <!-- Карточка 2 -->
+                    <div class="service-card service-card--with-image">
+                        <div class="service-image">
+                            <img src="images/8.png" alt="Спортивный массаж" loading="lazy">
+                        </div>
+                        <div class="service-number">02</div>
+                        <h3 class="service-title">Спорт</h3>
+                        <p class="service-desc">Подходит для активных людей: помогает восстанавливаться быстрее и повышает работоспособность мышц.</p>
+                        <a href="#booking" class="service-link">Записаться от 4 000 ₽</a>
+                    </div>
+                    <!-- Карточка 3 -->
+                    <div class="service-card service-card--with-image">
+                        <div class="service-image">
+                            <img src="images/limfa.png" alt="Лимфодренаж" loading="lazy">
+                        </div>
+                        <div class="service-number">03</div>
+                        <h3 class="service-title">Лимфодренаж</h3>
+                        <p class="service-desc">Убирает отеки, ускоряет обмен веществ, улучшает внешний вид кожи.</p>
+                        <a href="#booking" class="service-link">Записаться от 3 800 ₽</a>
+                    </div>
+                    <!-- Карточка 4 -->
+                    <div class="service-card service-card--with-image">
+                        <div class="service-image">
+                            <img src="images/9.png" alt="Антистресс массаж" loading="lazy">
+                        </div>
+                        <div class="service-number">04</div>
+                        <h3 class="service-title">Антистресс</h3>
+                        <p class="service-desc">Глубокое расслабление, снятие эмоционального напряжения и тревожности.</p>
+                        <a href="#booking" class="service-link">Записаться от 3 700 ₽</a>
+                    </div>
+                    <!-- Карточка 5 -->
+                    <div class="service-card service-card--with-image">
+                        <div class="service-image">
+                            <img src="images/spa.png" alt="СПА" loading="lazy">
+                        </div>
+                        <div class="service-number">05</div>
+                        <h3 class="service-title">СПА</h3>
+                        <p class="service-desc">Несколько часов настоящего расслабления и удовольствия.</p>
+                        <a href="#booking" class="service-link">Записаться от 6 500 ₽</a>
+                    </div>
+                    <!-- Карточка 6 -->
+                    <div class="service-card" style="background: var(--color-sand);">
+                        <div class="service-number">🎁</div>
+                        <h3 class="service-title">Индивидуальная программа</h3>
+                        <p class="service-desc">Подберем программу индивидуально под вас. В зависимости от потребности и желания.</p>
+                        <a href="#booking" class="service-link">Оставить заявку</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- КОМАНДА (ПРЕВЬЮ) -->
+        <section class="section team">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-suptitle">Наши мастера</div>
+                    <h2 class="section-title">Команда Vayatel</h2>
+                    <p style="max-width: 700px; margin: 20px auto 0; color: var(--color-stone);">Выберите своего специалиста для максимального комфорта и результата</p>
+                </div>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-badge">VIP-мастер</div>
+                        <div class="team-photo">
+                            <img src="images/vlad.jpg" alt="Влад" loading="lazy">
+                        </div>
+                        <h3 class="team-name">Влад</h3>
+                        <div class="team-specialty">Спортивный • Авторский</div>
+                        <div class="team-bio">
+                            <p><i>❤️</i> Сериалы, аниме, кулинария</p>
+                            <p><i>🏊</i> Пятиборье, Минспорта</p>
+                            <p><i>💆‍♂️</i> Спортивный и авторский массаж</p>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-badge">VIP-мастер</div>
+                        <div class="team-photo">
+                            <img src="images/adel.jpg" alt="Аделия" loading="lazy">
+                        </div>
+                        <h3 class="team-name">Аделия</h3>
+                        <div class="team-specialty">Расслабляющий • Лицо/голова</div>
+                        <div class="team-bio">
+                            <p><i>🎨</i> Рисование акрилом, пилатес</p>
+                            <p><i>🦷</i> Врач-стоматолог</p>
+                            <p><i>✨</i> Тело — храм души</p>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-badge">VIP-мастер</div>
+                        <div class="team-photo">
+                            <img src="images/evel.jpg" alt="Эльвина" loading="lazy">
+                        </div>
+                        <h3 class="team-name">Эльвина</h3>
+                        <div class="team-specialty">Лимфодренаж • Буккальный</div>
+                        <div class="team-bio">
+                            <p><i>🧘</i> Йога, танцы, живопись</p>
+                            <p><i>👶</i> Восстановление после кесарева</p>
+                            <p><i>📚</i> 3-е образование</p>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-badge">Топ-мастер</div>
+                        <div class="team-photo">
+                            <img src="images/dmitry.jpg" alt="Дмитрий" loading="lazy">
+                        </div>
+                        <h3 class="team-name">Дмитрий</h3>
+                        <div class="team-specialty">Нейроседативный</div>
+                        <div class="team-bio">
+                            <p><i>🧠</i> Глубокое расслабление нервной системы</p>
+                            <p><i>💪</i> Суставные манипуляции</p>
+                            <p><i>⚡</i> Перезагрузка организма</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-footer">
+                    <a href="team.html" class="team-link">вся команда →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- БЛОК КОМФОРТА С ИЗОБРАЖЕНИЕМ -->
+        <section class="comfort">
+            <div class="container">
+                <div class="comfort-grid">
+                    <div>
+                        <div class="section-suptitle" style="color: var(--color-clay);">Ваш комфорт</div>
+                        <h2 class="comfort-title">Напитки — часть вашей заботы</h2>
+                        <p class="comfort-text">Перед или после массажа мы создаём атмосферу заботы: чашка тёплого натурального кофе, свежий травяной чай или прохладный лимонад — чтобы вам было ещё мягче и приятнее.</p>
+                        <div class="comfort-list">
+                            <div class="comfort-item"><span>☕</span> Натуральный кофе</div>
+                            <div class="comfort-item"><span>🍋</span> Домашний лимонад</div>
+                            <div class="comfort-item"><span>🌿</span> Травяной чай</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="comfort-photo">
+                            <img src="images/tee.jpg" alt="Напитки в студии" loading="lazy">
+                        </div>
+                        <p style="font-size: 1.8rem; font-family: var(--font-serif); font-style: italic; color: var(--color-clay);">Чтобы тело расслаблялось, а разум отдыхал</p>
+                        <p style="margin-top: 30px; font-size: 1.1rem;">мы создаём среду, где можно остановиться, глубже почувствовать себя и восстановиться.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ФОРМА ЗАПИСИ С ВЫБОРОМ МАСТЕРА И ДИНАМИЧЕСКОЙ ЦЕНОЙ -->
+        <section id="booking" class="section contact">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-suptitle">Запись онлайн</div>
+                    <h2 class="section-title">Записаться на массаж</h2>
+                    <p style="max-width: 600px; margin: 20px auto 0; color: var(--color-stone);">Выберите услугу, мастера и удобное время — мы подтвердим запись в течение 15 минут</p>
+                </div>
+                
+                <div class="contact-grid">
+                    <div>
+                        <div class="booking-form" style="background: var(--color-white); box-shadow: var(--shadow-light);">
+                            <form id="bookingForm" onsubmit="handleFormSubmit(event)">
+                                <!-- Выбор услуги -->
+                                <div class="form-group">
+                                    <label style="font-size: 0.9rem; color: var(--color-earth); letter-spacing: 1px; margin-bottom: 10px; display: block;">1. Выберите услугу *</label>
+                                    <select id="serviceSelect" class="form-select" required style="padding: 15px 0; border-bottom: 2px solid rgba(107, 91, 78, 0.2);">
+                                        <option value="" disabled selected>— Выберите вид массажа —</option>
+                                        <option value="classic" data-price="3500">Классический массаж — 3 500 ₽ / 90 мин</option>
+                                        <option value="sport" data-price="4000">Спортивный массаж — 4 000 ₽ / 90 мин</option>
+                                        <option value="lymph" data-price="3800">Лимфодренажный массаж — 3 800 ₽ / 80 мин</option>
+                                        <option value="antistress" data-price="3700">Антистресс массаж — 3 700 ₽ / 90 мин</option>
+                                        <option value="spa" data-price="6500">СПА-ритуал — 6 500 ₽ / 120 мин</option>
+                                        <option value="face" data-price="2500">Массаж лица — 2 500 ₽ / 60 мин</option>
+                                        <option value="head" data-price="1800">Массаж головы — 1 800 ₽ / 30 мин</option>
+                                        <option value="anticell" data-price="3500">Антицеллюлитный массаж — 3 500 ₽ / 60 мин</option>
+                                        <option value="feet" data-price="1500">Массаж стоп/кистей — 1 500 ₽ / 30 мин</option>
+                                    </select>
+                                </div>
+                                
+                                <!-- Детализация цены (динамическая) -->
+                                <div id="priceDetail" class="price-detail" style="display: none;">
+                                    <div>
+                                        <span id="selectedServiceName" class="selected-service"></span>
+                                        <span id="selectedMasterName" class="selected-master"></span>
+                                    </div>
+                                    <div>
+                                        <span id="totalPrice" class="total-price">0 ₽</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Выбор мастера - ВСЕ МАСТЕРА ИЗ КОМАНДЫ -->
+                                <div class="form-group">
+                                    <label style="font-size: 0.9rem; color: var(--color-earth); letter-spacing: 1px; margin-bottom: 15px; display: block;">2. Выберите мастера *</label>
+                                    <div id="masterGrid" class="master-grid">
+                                        <!-- Влад -->
+                                        <label class="master-option" data-master="vlad">
+                                            <input type="radio" name="master" class="master-radio" value="Влад">
+                                            <span class="master-info">
+                                                <span class="master-name">Влад</span>
+                                                <span class="master-specialty">Спортивный, авторский массаж</span>
+                                                <span class="master-badge">VIP</span>
+                                            </span>
+                                        </label>
+                                        
+                                        <!-- Аделия -->
+                                        <label class="master-option" data-master="adeliya">
+                                            <input type="radio" name="master" class="master-radio" value="Аделия">
+                                            <span class="master-info">
+                                                <span class="master-name">Аделия</span>
+                                                <span class="master-specialty">Расслабляющий, лицо/голова</span>
+                                                <span class="master-badge">VIP</span>
+                                            </span>
+                                        </label>
+                                        
+                                        <!-- Эльвина -->
+                                        <label class="master-option" data-master="elvina">
+                                            <input type="radio" name="master" class="master-radio" value="Эльвина">
+                                            <span class="master-info">
+                                                <span class="master-name">Эльвина</span>
+                                                <span class="master-specialty">Лимфодренаж, буккальный</span>
+                                                <span class="master-badge">VIP</span>
+                                            </span>
+                                        </label>
+                                        
+                                        <!-- Эльза -->
+                                        <label class="master-option" data-master="elza">
+                                            <input type="radio" name="master" class="master-radio" value="Эльза">
+                                            <span class="master-info">
+                                                <span class="master-name">Эльза</span>
+                                                <span class="master-specialty">Расслабляющий, антицеллюлитный</span>
+                                                <span class="master-badge">VIP</span>
+                                            </span>
+                                        </label>
+                                        
+                                        <!-- Дмитрий -->
+                                        <label class="master-option" data-master="dmitry">
+                                            <input type="radio" name="master" class="master-radio" value="Дмитрий">
+                                            <span class="master-info">
+                                                <span class="master-name">Дмитрий</span>
+                                                <span class="master-specialty">Нейроседативный</span>
+                                                <span class="master-badge">Топ</span>
+                                            </span>
+                                        </label>
+                                        
+                                        <!-- Алмаз -->
+                                        <label class="master-option" data-master="almaz">
+                                            <input type="radio" name="master" class="master-radio" value="Алмаз">
+                                            <span class="master-info">
+                                                <span class="master-name">Алмаз</span>
+                                                <span class="master-specialty">Лечебный, оздоровительный</span>
+                                                <span class="master-badge">Топ</span>
+                                            </span>
+                                        </label>
+                                        
+                                        <!-- Алсу -->
+                                        <label class="master-option" data-master="alsu">
+                                            <input type="radio" name="master" class="master-radio" value="Алсу">
+                                            <span class="master-info">
+                                                <span class="master-name">Алсу</span>
+                                                <span class="master-specialty">Триггерные точки, спина</span>
+                                                <span class="master-badge">Топ</span>
+                                            </span>
+                                        </label>
+                                        
+                                        <!-- Елена -->
+                                        <label class="master-option" data-master="elena">
+                                            <input type="radio" name="master" class="master-radio" value="Елена">
+                                            <span class="master-info">
+                                                <span class="master-name">Елена</span>
+                                                <span class="master-specialty">Универсальный мастер</span>
+                                                <span class="master-badge">Топ</span>
+                                            </span>
+                                        </label>
+                                        
+                                        <!-- Рустам -->
+                                        <label class="master-option" data-master="rustam">
+                                            <input type="radio" name="master" class="master-radio" value="Рустам">
+                                            <span class="master-info">
+                                                <span class="master-name">Рустам</span>
+                                                <span class="master-specialty">6 лет опыта, испанский массаж</span>
+                                                <span class="master-badge">Топ</span>
+                                            </span>
+                                        </label>
+                                        
+                                        <!-- Георгий -->
+                                        <label class="master-option" data-master="georgy">
+                                            <input type="radio" name="master" class="master-radio" value="Георгий">
+                                            <span class="master-info">
+                                                <span class="master-name">Георгий</span>
+                                                <span class="master-specialty">Врач-невролог</span>
+                                                <span class="master-badge">Топ</span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <!-- Выбор филиала -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label style="font-size: 0.9rem; color: var(--color-earth); letter-spacing: 1px; margin-bottom: 10px; display: block;">3. Выберите филиал *</label>
+                                        <select id="branchSelect" class="form-select" required>
+                                            <option value="" disabled selected>— Выберите студию —</option>
+                                            <option value="sverdlova">ул. Свердлова, 72/2</option>
+                                            <option value="mendeleeva">ул. Менделеева, 134/7</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <!-- Дата и время -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label style="font-size: 0.9rem; color: var(--color-earth); letter-spacing: 1px; margin-bottom: 10px; display: block;">4. Выберите дату *</label>
+                                        <input type="date" id="dateInput" class="form-input" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="font-size: 0.9rem; color: var(--color-earth); letter-spacing: 1px; margin-bottom: 10px; display: block;">Выберите время *</label>
+                                        <input type="time" id="timeInput" class="form-input" required>
+                                    </div>
+                                </div>
+                                
+                                <!-- Контактные данные -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label style="font-size: 0.9rem; color: var(--color-earth); letter-spacing: 1px; margin-bottom: 10px; display: block;">Ваше имя *</label>
+                                        <input type="text" class="form-input" placeholder="Имя" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="font-size: 0.9rem; color: var(--color-earth); letter-spacing: 1px; margin-bottom: 10px; display: block;">Телефон *</label>
+                                        <input type="tel" class="form-input" placeholder="+7 (___) ___-__-__" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label style="font-size: 0.9rem; color: var(--color-earth); letter-spacing: 1px; margin-bottom: 10px; display: block;">Комментарий</label>
+                                    <textarea class="form-input" placeholder="Пожелания, особые просьбы, проблемы..." rows="2" style="resize: vertical;"></textarea>
+                                </div>
+                                
+                                <!-- Итоговая цена и кнопка -->
+                                <div style="margin-top: 40px; text-align: center;">
+                                    <div style="font-size: 1.2rem; color: var(--color-stone); margin-bottom: 15px;">
+                                        Итого: <span id="finalTotal" style="font-family: var(--font-serif); font-size: 2rem; color: var(--color-earth); margin-left: 15px;">0 ₽</span>
+                                    </div>
+                                    <button type="submit" class="btn" style="padding: 18px 60px; font-size: 1rem;">Записаться</button>
+                                    <p class="form-policy" style="margin-top: 25px;">Отправляя заявку, вы соглашаетесь с <a href="docs.html">Политикой конфиденциальности</a> и обработкой персональных данных</p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Контактная информация -->
+                    <div class="contact-info">
+                        <div class="contact-details">
+                            <div class="contact-detail-item">
+                                <div class="contact-detail-icon">📞</div>
+                                <div class="contact-detail-text">
+                                    <h4>Свердлова, 72/2</h4>
+                                    <p style="font-size: 1.2rem; font-weight: 500;">+7 (995) 943-59-97</p>
+                                    <small>пн-вс: 10:00 - 21:00</small>
+                                </div>
+                            </div>
+                            <div class="contact-detail-item">
+                                <div class="contact-detail-icon">📞</div>
+                                <div class="contact-detail-text">
+                                    <h4>Менделеева, 134/7</h4>
+                                    <p style="font-size: 1.2rem; font-weight: 500;">+7 (927) 308-08-76</p>
+                                    <small>пн-вс: 10:00 - 21:00</small>
+                                </div>
+                            </div>
+                            <div class="contact-detail-item">
+                                <div class="contact-detail-icon">✉️</div>
+                                <div class="contact-detail-text">
+                                    <h4>Электронная почта</h4>
+                                    <p>info@vayatel.ru</p>
+                                    <small>Ответ в течение часа</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Преимущества -->
+                        <div style="background: var(--color-cream); padding: 30px; margin-top: 40px; border-radius: 8px;">
+                            <h4 style="font-size: 1.2rem; color: var(--color-earth); margin-bottom: 20px;">Почему выбирают нас</h4>
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 12px;">
+                                    <span style="color: var(--color-clay); font-size: 1.2rem;">✓</span>
+                                    <span>Дипломированные мастера с медобразованием</span>
+                                </li>
+                                <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 12px;">
+                                    <span style="color: var(--color-clay); font-size: 1.2rem;">✓</span>
+                                    <span>Индивидуальный подход к каждому клиенту</span>
+                                </li>
+                                <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 12px;">
+                                    <span style="color: var(--color-clay); font-size: 1.2rem;">✓</span>
+                                    <span>Натуральные масла и профессиональная косметика</span>
+                                </li>
+                                <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 12px;">
+                                    <span style="color: var(--color-clay); font-size: 1.2rem;">✓</span>
+                                    <span>Уютная атмосфера и авторские напитки</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Галерея миниатюр -->
+                        <div style="margin-top: 40px;">
+                            <h4 style="font-size: 1.1rem; color: var(--color-earth); margin-bottom: 20px;">Атмосфера студии</h4>
+                            <div class="gallery-grid">
+                                <div class="gallery-item">
+                                    <img src="images/4.png" alt="Интерьер" loading="lazy">
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="images/spa.png" alt="СПА" loading="lazy">
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="images/tee.jpg" alt="Напитки" loading="lazy">
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="images/class.png" alt="Массаж" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">Vaya<span>tel</span></div>
+                    <p class="footer-about">Студия массажного искусства в Уфе. Тишина. Эстетика. Прикосновение.</p>
+                </div>
+                <div class="footer-nav">
+                    <h4 class="footer-title">Меню</h4>
+                    <a href="index.html">Главная</a>
+                    <a href="about.html">О нас</a>
+                    <a href="services.html">Услуги</a>
+                    <a href="team.html">Команда</a>
+                    <a href="contacts.html">Контакты</a>
+                    <a href="docs.html">Документы</a>
+                </div>
+                <div class="footer-nav">
+                    <h4 class="footer-title">Документы</h4>
+                    <a href="docs.html">Политика конфиденциальности</a>
+                    <a href="docs.html">Договор Оферты</a>
+                    <a href="docs.html">Противопоказания</a>
+                </div>
+                <div>
+                    <h4 class="footer-title">Получайте предложения</h4>
+                    <div class="footer-subscribe">
+                        <input type="email" placeholder="Ваш Email">
+                        <button>→</button>
+                    </div>
+                    <div class="footer-social" style="margin-top: 30px;">
+                        <a href="#">ВКонтакте</a>
+                        <a href="#">Телеграм</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Vayatel, 2025. Все права защищены.</p>
+                <div class="footer-social">
+                    <a href="#">VK</a>
+                    <a href="#">TG</a>
+                </div>
+            </div>
+            <div class="footer-warning">
+                * Instagram признан экстремистской организацией. Деятельность Meta Platforms Inc. запрещена на территории РФ.
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Данные всех мастеров (из страницы team)
+            const masters = [
+                { id: 'vlad', name: 'Влад', specialty: 'Спортивный, авторский массаж', badge: 'VIP' },
+                { id: 'adeliya', name: 'Аделия', specialty: 'Расслабляющий, лицо/голова', badge: 'VIP' },
+                { id: 'elvina', name: 'Эльвина', specialty: 'Лимфодренаж, буккальный', badge: 'VIP' },
+                { id: 'elza', name: 'Эльза', specialty: 'Расслабляющий, антицеллюлитный', badge: 'VIP' },
+                { id: 'dmitry', name: 'Дмитрий', specialty: 'Нейроседативный', badge: 'Топ' },
+                { id: 'almaz', name: 'Алмаз', specialty: 'Лечебный, оздоровительный', badge: 'Топ' },
+                { id: 'alsu', name: 'Алсу', specialty: 'Триггерные точки, спина', badge: 'Топ' },
+                { id: 'elena', name: 'Елена', specialty: 'Универсальный мастер', badge: 'Топ' },
+                { id: 'rustam', name: 'Рустам', specialty: '6 лет опыта, испанский массаж', badge: 'Топ' },
+                { id: 'georgy', name: 'Георгий', specialty: 'Врач-невролог', badge: 'Топ' }
+            ];
+            
+            // Данные услуг с ценами
+            const services = {
+                'classic': { name: 'Классический массаж', price: 3500, duration: '90 мин' },
+                'sport': { name: 'Спортивный массаж', price: 4000, duration: '90 мин' },
+                'lymph': { name: 'Лимфодренажный массаж', price: 3800, duration: '80 мин' },
+                'antistress': { name: 'Антистресс массаж', price: 3700, duration: '90 мин' },
+                'spa': { name: 'СПА-ритуал', price: 6500, duration: '120 мин' },
+                'face': { name: 'Массаж лица', price: 2500, duration: '60 мин' },
+                'head': { name: 'Массаж головы', price: 1800, duration: '30 мин' },
+                'anticell': { name: 'Антицеллюлитный массаж', price: 3500, duration: '60 мин' },
+                'feet': { name: 'Массаж стоп/кистей', price: 1500, duration: '30 мин' }
+            };
+            
+            // Элементы формы
+            const serviceSelect = document.getElementById('serviceSelect');
+            const masterOptions = document.querySelectorAll('.master-option');
+            const masterRadios = document.querySelectorAll('.master-radio');
+            const priceDetail = document.getElementById('priceDetail');
+            const selectedServiceName = document.getElementById('selectedServiceName');
+            const selectedMasterName = document.getElementById('selectedMasterName');
+            const totalPrice = document.getElementById('totalPrice');
+            const finalTotal = document.getElementById('finalTotal');
+            
+            let selectedService = null;
+            let selectedMaster = null;
+            let currentPrice = 0;
+            
+            // Форматирование цены
+            function formatPrice(price) {
+                return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
+            }
+            
+            // Обновление отображения цены
+            function updatePrice() {
+                if (selectedService && selectedMaster) {
+                    const service = services[selectedService];
+                    if (service) {
+                        currentPrice = service.price;
+                        
+                        // Обновляем детали
+                        selectedServiceName.textContent = `${service.name} — ${formatPrice(service.price)} (${service.duration})`;
+                        selectedMasterName.textContent = `• Мастер: ${selectedMaster}`;
+                        totalPrice.textContent = formatPrice(currentPrice);
+                        finalTotal.textContent = formatPrice(currentPrice);
+                        
+                        priceDetail.style.display = 'flex';
+                    }
+                } else if (selectedService) {
+                    const service = services[selectedService];
+                    if (service) {
+                        currentPrice = service.price;
+                        
+                        selectedServiceName.textContent = `${service.name} — ${formatPrice(service.price)} (${service.duration})`;
+                        selectedMasterName.textContent = selectedMaster ? `• Мастер: ${selectedMaster}` : '';
+                        totalPrice.textContent = formatPrice(currentPrice);
+                        finalTotal.textContent = formatPrice(currentPrice);
+                        
+                        priceDetail.style.display = 'flex';
+                    }
+                } else {
+                    priceDetail.style.display = 'none';
+                    finalTotal.textContent = '0 ₽';
+                }
+            }
+            
+            // Обработчик выбора услуги
+            serviceSelect.addEventListener('change', function() {
+                selectedService = this.value;
+                updatePrice();
+            });
+            
+            // Обработчик выбора мастера - с подсветкой
+            masterOptions.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    // Не срабатывать, если клик по радио (чтобы избежать двойного срабатывания)
+                    if (e.target.classList.contains('master-radio')) return;
+                    
+                    const radio = this.querySelector('.master-radio');
+                    if (radio) {
+                        radio.checked = true;
+                        
+                        // Триггерим событие change для радио
+                        const event = new Event('change', { bubbles: true });
+                        radio.dispatchEvent(event);
+                    }
+                });
+            });
+            
+            // Обработчик изменения радио-кнопок мастера
+            masterRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    // Убираем выделение у всех опций
+                    masterOptions.forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Добавляем выделение текущей опции
+                    const parentOption = this.closest('.master-option');
+                    if (parentOption) {
+                        parentOption.classList.add('selected');
+                        selectedMaster = this.value;
+                    }
+                    
+                    updatePrice();
+                });
+                
+                // Если радио уже выбрана, выделяем опцию
+                if (radio.checked) {
+                    const parentOption = radio.closest('.master-option');
+                    if (parentOption) {
+                        parentOption.classList.add('selected');
+                        selectedMaster = radio.value;
+                    }
+                }
+            });
+            
+            // Установка минимальной даты (сегодня)
+            const dateInput = document.getElementById('dateInput');
+            if (dateInput) {
+                const today = new Date();
+                const yyyy = today.getFullYear();
+                const mm = String(today.getMonth() + 1).padStart(2, '0');
+                const dd = String(today.getDate()).padStart(2, '0');
+                dateInput.min = `${yyyy}-${mm}-${dd}`;
+                
+                // Устанавливаем дату по умолчанию через 1 день
+                const tomorrow = new Date(today);
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                const tmm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+                const tdd = String(tomorrow.getDate()).padStart(2, '0');
+                dateInput.value = `${yyyy}-${tmm}-${tdd}`;
+            }
+            
+            // Установка времени по умолчанию
+            const timeInput = document.getElementById('timeInput');
+            if (timeInput) {
+                timeInput.value = '14:00';
+            }
+            
+            // Проверяем, есть ли сохраненный выбор услуги из URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const serviceParam = urlParams.get('service');
+            if (serviceParam && services[serviceParam]) {
+                serviceSelect.value = serviceParam;
+                selectedService = serviceParam;
+                updatePrice();
+            }
+        });
+        
+        // Переопределение handleFormSubmit для красивой отправки
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const nameInput = form.querySelector('input[placeholder*="Имя"]');
+            const phoneInput = form.querySelector('input[type="tel"]');
+            const serviceSelect = document.getElementById('serviceSelect');
+            const masterRadio = form.querySelector('input[name="master"]:checked');
+            const branchSelect = document.getElementById('branchSelect');
+            
+            if (!serviceSelect || !serviceSelect.value) {
+                alert('Пожалуйста, выберите услугу');
+                serviceSelect.focus();
+                return false;
+            }
+            
+            if (!masterRadio) {
+                alert('Пожалуйста, выберите мастера');
+                return false;
+            }
+            
+            if (!branchSelect || !branchSelect.value) {
+                alert('Пожалуйста, выберите филиал');
+                branchSelect.focus();
+                return false;
+            }
+            
+            if (!nameInput || !nameInput.value.trim()) {
+                alert('Пожалуйста, введите ваше имя');
+                nameInput.focus();
+                return false;
+            }
+            
+            if (!phoneInput || !phoneInput.value.trim()) {
+                alert('Пожалуйста, введите номер телефона');
+                phoneInput.focus();
+                return false;
+            }
+            
+            // Формируем сообщение об успешной записи
+            const serviceText = serviceSelect.options[serviceSelect.selectedIndex].text.split(' — ')[0];
+            const masterText = masterRadio.value;
+            const branchText = branchSelect.options[branchSelect.selectedIndex].text;
+            const dateText = document.getElementById('dateInput')?.value || '';
+            const timeText = document.getElementById('timeInput')?.value || '';
+            
+            alert(`✅ Спасибо, ${nameInput.value.trim()}!\n\nВы записаны на:\n${serviceText}\nМастер: ${masterText}\nФилиал: ${branchText}\nДата: ${dateText}, время: ${timeText}\n\nМы свяжемся с вами в ближайшее время для подтверждения записи.`);
+            
+            form.reset();
+            
+            // Сбрасываем выделение мастеров
+            const masterOptions = document.querySelectorAll('.master-option');
+            masterOptions.forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Скрываем детали цены
+            const priceDetail = document.getElementById('priceDetail');
+            if (priceDetail) {
+                priceDetail.style.display = 'none';
+            }
+            
+            // Сбрасываем итоговую цену
+            const finalTotal = document.getElementById('finalTotal');
+            if (finalTotal) {
+                finalTotal.textContent = '0 ₽';
+            }
+            
+            return false;
+        }
+    </script>
+</body>
+</html>
